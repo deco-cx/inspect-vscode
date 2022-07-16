@@ -21,8 +21,10 @@ Now hit the backquote key (`) and click on any DOM Element while the project is 
 
 ### Implementing in your project
 
-- Add `"inspect_vscode": "https://deno.land/x/inspect_vscode/",` to your `import_map.json` file.
+- Add `"inspect_vscode": "https://deno.land/x/inspect_vscode/"` to your `import_map.json` file.
+
 - Create `islands/InspectVSCode.tsx`:
+
 ```tsx
 /** @jsx h */
 import { h } from "preact";
@@ -42,12 +44,15 @@ export default function InspectVSCode() {
   return <span></span>;
 }
 ```
+
 - Create `routes/inspect-vscode.ts`:
+
 ```tsx
 import { handler as InspectVSCode } from "inspect_vscode/inspect-vscode.ts";
 
 export const handler = InspectVSCode;
 ```
+
 - Import `islands/InspectVSCode.tsx` in a route and render it.
 
 Done!
