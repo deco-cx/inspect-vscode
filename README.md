@@ -21,13 +21,13 @@ Now hit the backquote key (`) and click on any DOM Element while the project is 
 
 ### Implementing in your project
 
-- Add `"inspect-vscode/": "https://deno.land/x/inspect-vscode/",` to your `import_map.json` file.
+- Add `"inspect_vscode": "https://deno.land/x/inspect_vscode/",` to your `import_map.json` file.
 - Create `islands/InspectVSCode.tsx`:
 ```tsx
 /** @jsx h */
 import { h } from "preact";
 import { useEffect } from "preact/hooks";
-import { DomInspector } from "inspect-vscode/InspectVSCode.tsx";
+import { DomInspector } from "inspect_vscode/InspectVSCode.tsx";
 
 declare global {
   interface Window {
@@ -44,7 +44,7 @@ export default function InspectVSCode() {
 ```
 - Create `routes/inspect-vscode.ts`:
 ```tsx
-import { handler as InspectVSCode } from "inspect-vscode/inspect-vscode.ts";
+import { handler as InspectVSCode } from "inspect_vscode/inspect-vscode.ts";
 
 export const handler = InspectVSCode;
 ```
