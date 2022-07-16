@@ -23,7 +23,7 @@ export class DomInspector {
   constructor(
     element: HTMLElement,
     options: DomInspectorOptions = {
-      outline: "1px dashed #2fd080",
+      outline: "2px dashed #2fd080",
       activator: DomInspectorActivators.Backquote,
     },
   ) {
