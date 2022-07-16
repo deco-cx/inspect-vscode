@@ -1,7 +1,3 @@
-/** @jsx h */
-import { h } from "preact";
-import { useEffect } from "preact/hooks";
-
 export interface DomInspectorOptions {
   outline: string;
   activator: (event: KeyboardEvent) => boolean;
@@ -14,7 +10,7 @@ export const DomInspectorActivators = {
   Backquote: (event: KeyboardEvent) => event.code === "Backquote",
 };
 
-export class DomInspector {
+export default class DomInspector {
   private element: HTMLElement;
   private hoveredElement?: HTMLElement;
   private options: DomInspectorOptions;
@@ -119,17 +115,4 @@ export class DomInspector {
       );
     }
   };
-}
-
-declare global {
-  interface Window {
-    inspectVSCode: DomInspector;
-  }
-}
-
-export default function InspectVSCode() {
-  useEffect(() => {
-    window.inspectVSCode = new DomInspector(document.body);
-  });
-  return <span></span>;
 }

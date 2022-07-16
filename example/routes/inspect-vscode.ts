@@ -1,3 +1,3 @@
-import { handler as InspectVSCode } from "../../inspect-vscode.ts";
+import inspectVSCodeHandler from "../../handler.ts";
 
-export const handler = InspectVSCode;
+export const handler = inspectVSCodeHandler;

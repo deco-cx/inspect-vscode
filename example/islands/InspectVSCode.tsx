@@ -1,17 +1,4 @@
 /** @jsx h */
-import { h } from "preact";
-import { useEffect } from "preact/hooks";
-import { DomInspector } from "../../InspectVSCode.tsx";
+import InspectVSCode from "../../island.tsx";
 
-declare global {
-  interface Window {
-    inspectVSCode: DomInspector;
-  }
-}
-
-export default function InspectVSCode() {
-  useEffect(() => {
-    window.inspectVSCode = new DomInspector(document.body);
-  });
-  return <span></span>;
-}
+export default InspectVSCode;

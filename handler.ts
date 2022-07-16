@@ -1,7 +1,7 @@
 import { Handlers } from "$fresh/server.ts";
 import { join } from "std/path/mod.ts";
 
-export const handler: Handlers = {
+const handler: Handlers = {
   async POST(req) {
     const outerHTML = await req.text();
     const { fullpath, lineNumber, column } = await grep(outerHTML);
@@ -12,6 +12,8 @@ export const handler: Handlers = {
     });
   },
 };
+
+export default handler;
 
 function vsCodeLinkFromResult(file: string, line: number, column: number) {
   return `vscode://file/${file}:${line}:${column}`;

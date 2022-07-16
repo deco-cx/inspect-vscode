@@ -27,30 +27,17 @@ Now hit the backquote key (`) and click on any DOM Element while the project is 
 
 ```tsx
 /** @jsx h */
-import { h } from "preact";
-import { useEffect } from "preact/hooks";
-import { DomInspector } from "inspect_vscode/InspectVSCode.tsx";
+import InspectVSCode from "inspect_vscode/island.tsx";
 
-declare global {
-  interface Window {
-    inspectVSCode: DomInspector;
-  }
-}
-
-export default function InspectVSCode() {
-  useEffect(() => {
-    window.inspectVSCode = new DomInspector(document.body);
-  });
-  return <span></span>;
-}
+export default InspectVSCode;
 ```
 
 - Create `routes/inspect-vscode.ts`:
 
 ```tsx
-import { handler as InspectVSCode } from "inspect_vscode/inspect-vscode.ts";
+import inspectVSCodeHandler from "inspect_vscode/handler.ts";
 
-export const handler = InspectVSCode;
+export const handler = inspectVSCodeHandler;
 ```
 
 - Import `islands/InspectVSCode.tsx` in a route and render it.
