@@ -1,0 +1,20 @@
+{
+  "deno.enable": true,
+  "deno.lint": true,
+  "deno.unstable": true,
+  "deno.importMap": "./example/import_map.json",
+  "tailwindCSS.includeLanguages": {
+    "tsx": "html",
+    "html": "html",
+    "javascript": "javascript",
+    "typecript": "typescript",
+    "css": "css"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}
