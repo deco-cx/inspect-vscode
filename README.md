@@ -1,6 +1,8 @@
 # Inspect in VSCode
 
-This is a simple extension for [deno/fresh](https://fresh.deno.dev) projects that allows you to inspect your components' source code in VSCode. This repository includes a sample site (the fresh website) to show how it works. Activate the extension and click on any component. Your browser will attempt to navigate to the source code file in your project.
+This is a simple extension for [deno/fresh](https://fresh.deno.dev) projects that allows you to inspect your components' source code in VSCode. This repository includes a sample site to show how it works. Activate the extension with `backquote` (\`) and click on any component. Your browser will attempt to navigate to the source code file in your project.
+
+![Demo gif showing inspect to vscode](example/static/demo.gif)
 
 This is a native feature in [`live`](https://github.com/deco-cx/live), the upcoming deno-native CMS.
 
