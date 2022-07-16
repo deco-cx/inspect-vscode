@@ -1,8 +1,8 @@
 # Inspect in VSCode
 
-This is a simple extension for [deno/fresh](https://fresh.deno.dev) projects that allows you to inspect your code in VSCode. This repository includes a sample site (the fresh website) to show how it works.
+This is a simple extension for [deno/fresh](https://fresh.deno.dev) projects that allows you to inspect your components' source code in VSCode. This repository includes a sample site (the fresh website) to show how it works. Activate the extension and click on any component. Your browser will attempt to navigate to the source code file in your project.
 
-This is a native feature in our deno-native CMS, [`live`](https://github.com/deco-cx/live).
+This is a native feature in [`live`](https://github.com/deco-cx/live), the upcoming deno-native CMS.
 
 ### Usage
 
@@ -56,7 +56,7 @@ It's really quite simple!
 
 First, the client-side script activates the hover. 
 
-When an element is clicked, it's `outerHTML` is sent to the server as a `POST` to `/inspect-vscode`.
+When an element is clicked, its `outerHTML` is sent to the server as a `POST` to `/inspect-vscode`.
 
 The route handler then parses the `outerHTML` and `greps` the first complete HTML element. 
 
@@ -67,4 +67,5 @@ If that fails — which happens when the element is formatted in multiple lines 
 
 - Better implementations for multi-line search are welcome. Right now, we're using grep for wider compatibility. There is no native tool for multiline regex search in MacOS and I wouldn't want to require installing a new package for that.
 - Twind syntax (tw\`...\`) is not supported — in fact, any transformation on the element causes grep to fail. I would welcome a PR which adds support for transformed HTML by using fuzzy search, something like https://deno.land/x/fzf@v0.5.1 
+- Components which are very similar might not be detected precisely: the first occurence will be found every time.
 
