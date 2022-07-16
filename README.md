@@ -21,7 +21,7 @@ Now hit the backquote key (`) and click on any DOM Element while the project is 
 
 ### Implementing in your project
 
-- Add `"inspect_vscode": "https://deno.land/x/inspect_vscode@0.0.5/"` and `"std/":"https://deno.land/std@0.148.0/"` to your `import_map.json` file.
+- Add `"inspect_vscode/": "https://deno.land/x/inspect_vscode@0.0.5/"` and `"std/":"https://deno.land/std@0.148.0/"` to your `import_map.json` file.
 
 - Create `islands/InspectVSCode.tsx`:
 
