@@ -2,14 +2,7 @@
   "deno.enable": true,
   "deno.lint": true,
   "deno.unstable": true,
-  "deno.importMap": "./example/import_map.json",
-  "tailwindCSS.includeLanguages": {
-    "tsx": "html",
-    "html": "html",
-    "javascript": "javascript",
-    "typecript": "typescript",
-    "css": "css"
-  },
+  "deno.importMap": "./import_map.json",
   "editor.quickSuggestions": {
     "strings": true
   },
