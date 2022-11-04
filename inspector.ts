@@ -27,6 +27,7 @@ export default class DomInspector {
   private hoveredElement?: HTMLElement;
   private options: DomInspectorOptions;
   private active = false;
+  private onDeactivate? = () => {};
 
   constructor(
     element: HTMLElement,
@@ -50,9 +51,10 @@ export default class DomInspector {
     );
   }
 
-  activate = () => {
+  activate = (onDeactivate?: () => void) => {
     this.addEventListeners();
     this.active = true;
+    this.onDeactivate = onDeactivate;
     console.log(
       "InspectVSCode activated. Hover any element and click to open it in VSCode directly. Press ESCAPE to deactivate.",
     );
@@ -76,6 +78,9 @@ export default class DomInspector {
     }
 
     this.active = false;
+    if (this.onDeactivate) {
+      this.onDeactivate();
+    }
   };
 
   isActive = () => this.active;
@@ -100,7 +105,10 @@ export default class DomInspector {
 
   handleMouseOver = (event: MouseEvent) => {
     const targetElement = event.target as HTMLElement;
-    if (!targetElement || targetElement === document.body) {
+    if (
+      !targetElement || targetElement === document.body ||
+      targetElement.id === "inspect-vscode-button"
+    ) {
       return;
     }
 
@@ -118,6 +126,13 @@ export default class DomInspector {
   handleClick = async (event: MouseEvent) => {
     event.preventDefault();
     const targetElement = event.target as HTMLElement;
+
+    if (
+      !targetElement || targetElement === document.body ||
+      targetElement.id === "inspect-vscode-button"
+    ) {
+      return;
+    }
 
     // Recover the style of the element
     this.clean(targetElement);
@@ -139,6 +154,8 @@ export default class DomInspector {
     }).then((res) => res.text());
     // Navigate to vscode link
     window.location.href = link;
+
+    this.deactivate();
   };
 
   handleCancelKey = (event: KeyboardEvent) => {
