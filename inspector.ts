@@ -78,6 +78,8 @@ export default class DomInspector {
     this.active = false;
   };
 
+  isActive = () => this.active;
+
   /**
    * Add event listeners for DOM-inspectorey actions
    */
