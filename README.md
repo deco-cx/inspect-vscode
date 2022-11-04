@@ -21,7 +21,7 @@ Now hit the backquote key (`) and click on any DOM Element while the project is 
 
 ### Implementing in your project
 
-- Add `"inspect_vscode/": "https://deno.land/x/inspect_vscode@0.0.5/"` and `"std/":"https://deno.land/std@0.148.0/"` to your `import_map.json` file.
+- Add `"inspect_vscode/": "https://deno.land/x/inspect_vscode@0.1.0/"` and `"std/":"https://deno.land/std@0.148.0/"` to your `import_map.json` file.
 
 - Create `islands/InspectVSCode.tsx`:
 
@@ -32,7 +32,7 @@ import InspectVSCode from "inspect_vscode/island.tsx";
 export default InspectVSCode;
 ```
 
-- Create `routes/inspect-vscode.ts`:
+- Create `routes/_live/inspect.ts`:
 
 ```tsx
 import inspectVSCodeHandler from "inspect_vscode/handler.ts";
@@ -43,23 +43,3 @@ export const handler = inspectVSCodeHandler;
 - Import `islands/InspectVSCode.tsx` in a route and render it.
 
 Done!
-
-### How this works
-
-It's really quite simple! 
-
-First, the client-side script activates the hover. 
-
-When an element is clicked, its `outerHTML` is sent to the server as a `POST` to `/inspect-vscode`.
-
-The route handler then parses the `outerHTML` and `greps` the first complete HTML element. 
-
-If that fails — which happens when the element is formatted in multiple lines — we fallback to `grep`ing the longest attribute. This generally works.
-
-
-### Known Limitations
-
-- Better implementations for multi-line search are welcome. Right now, we're using grep for wider compatibility. There is no native tool for multiline regex search in MacOS and I wouldn't want to require installing a new package for that.
-- Twind syntax (tw\`...\`) is not supported — in fact, any transformation on the element causes grep to fail. I would welcome a PR which adds support for transformed HTML by using fuzzy search, something like https://deno.land/x/fzf@v0.5.1 
-- Components which are very similar might not be detected precisely: the first occurence will be found every time.
-
