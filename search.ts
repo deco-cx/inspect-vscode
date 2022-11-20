@@ -1,4 +1,4 @@
-import { join } from "std/path/mod.ts";
+import { join } from "https://deno.land/std@0.147.0/path/mod.ts";
 import Fuse from "https://deno.land/x/fuse@v6.4.1/dist/fuse.esm.min.js";
 
 export async function search(content: string, manifestKey: string) {
