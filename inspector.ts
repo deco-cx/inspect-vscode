@@ -51,7 +51,7 @@ export default class DomInspector {
     );
   }
 
-  activate = (onDeactivate?: () => void) => {
+  activate = (onDeactivate?: () => void): void => {
     this.addEventListeners();
     this.active = true;
     this.onDeactivate = onDeactivate;
@@ -60,7 +60,7 @@ export default class DomInspector {
     );
   };
 
-  deactivate = () => {
+  deactivate = (): void => {
     console.log(
       `InspectVSCode deactivated. Press ${this.options.activator.label} to activate again.`,
     );
@@ -83,12 +83,12 @@ export default class DomInspector {
     }
   };
 
-  isActive = () => this.active;
+  isActive = (): boolean => this.active;
 
   /**
    * Add event listeners for DOM-inspectorey actions
    */
-  addEventListeners = () => {
+  addEventListeners = (): void => {
     const { element } = this;
 
     element.addEventListener("mouseover", this.handleMouseOver, true);
@@ -97,13 +97,13 @@ export default class DomInspector {
     element.addEventListener("keydown", this.handleCancelKey, true);
   };
 
-  handleKeydown = (event: KeyboardEvent) => {
+  handleKeydown = (event: KeyboardEvent): void => {
     if (this.options.activator.matchEvent(event) && !this.active) {
       this.activate();
     }
   };
 
-  handleMouseOver = (event: MouseEvent) => {
+  handleMouseOver = (event: MouseEvent): void => {
     const targetElement = event.target as HTMLElement;
     if (
       !targetElement || targetElement === document.body ||
@@ -118,12 +118,12 @@ export default class DomInspector {
     this.hoveredElement = targetElement;
   };
 
-  handleMouseOut = (event: MouseEvent) => {
+  handleMouseOut = (event: MouseEvent): void => {
     const targetElement = event.target as HTMLElement;
     this.clean(targetElement);
   };
 
-  handleClick = async (event: MouseEvent) => {
+  handleClick = async (event: MouseEvent): Promise<void> => {
     event.preventDefault();
     const targetElement = event.target as HTMLElement;
 
@@ -158,7 +158,7 @@ export default class DomInspector {
     this.deactivate();
   };
 
-  handleCancelKey = (event: KeyboardEvent) => {
+  handleCancelKey = (event: KeyboardEvent): void => {
     if (event.key !== "Escape" || event.defaultPrevented) {
       return;
     }
@@ -180,13 +180,13 @@ export default class DomInspector {
     return null;
   };
 
-  paint = (element: HTMLElement) => {
+  paint = (element: HTMLElement): void => {
     element.style.outline = this.options.outline;
     element.style.backgroundColor = this.options.backgroundColor;
     element.style.backgroundBlendMode = this.options.backgroundBlendMode;
   };
 
-  clean = (element: HTMLElement) => {
+  clean = (element: HTMLElement): void => {
     element.style.outline = "";
     element.style.backgroundColor = "";
     element.style.backgroundBlendMode = "";

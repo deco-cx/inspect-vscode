@@ -1,5 +1,5 @@
-import { join } from "https://deno.land/std@0.147.0/path/mod.ts";
-import Fuse from "https://deno.land/x/fuse@v6.4.1/dist/fuse.esm.min.js";
+import { join } from "@std/path";
+import Fuse from "npm:fuse.js@7.0.0";
 
 export async function search(content: string, manifestKey: string) {
   const escaped = content.replace(/>.*/, ">");

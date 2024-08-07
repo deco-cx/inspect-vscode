@@ -3,7 +3,7 @@ import { search } from "./search.ts";
 export default async function inspectHandler(
   inspectPath = "/_live/inspect/",
   req: Request,
-) {
+): Promise<Response> {
   const outerHTML = await req.text();
   const url = new URL(req.url);
   const manifestKey = "./" + url.pathname.replace(inspectPath, "");
@@ -18,6 +18,10 @@ export default async function inspectHandler(
   });
 }
 
-function vsCodeLinkFromResult(file: string, line: number, column: number) {
+function vsCodeLinkFromResult(
+  file: string,
+  line: number,
+  column: number,
+): string {
   return `vscode://file/${file}:${line}:${column}`;
 }
